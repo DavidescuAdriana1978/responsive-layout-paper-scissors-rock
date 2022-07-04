@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+    <script>
+        var computerChoice = document.getElementById("#computerChoice");
+        var userChoice = document.getElementById("#userChoice");
+        var resultDisplay = document.getElementById("#result");
+
+        var choices = ["rock", "paper", "scissors"];
+
+        var computerChoice = Math.floor(Math.random() * choices.length);
+        var userChoice = Math.floor(Math.random() * choices.length);
+
+        var result;
+        function play() {
+            if (computerChoice === userChoice) {
+                result = "Tie";
+            }
+            else {
+                if (computerChoice === "rock" && userChoice === "paper") {
+                    result = "User wins";
+                }
+                else {
+                    if (computerChoice === "rock" && userChoice === "scissors") {
+                        result = "Computer wins";
+                    } else {
+                        if (computerChoice === "paper" && userChoice === "scissors") {
+                            result = "User wins";
+                        } else {
+                            if (computerChoice === "paper" && userChoice === "rock") {
+                                result = "Computer wins";
+                            } else {
+                                if (computerChoice === "scissors" && userChoice === "rock") {
+                                    result = "User wins";
+                                } else {
+                                    if (computerChoice === "scissors" && userChoice === "paper") {
+                                        result = "Computer wins";
+                                    } else {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            resultDisplay.innerHTML = result;
+        }
+
+        // rock beats scissors
+        // scissors beats paper
+        // paper beats rock
+    </script>
+</head>
+
+<body>
+    <h2>Computer Choice: <span id="computerChoice"></span></h2>
+    <h2>User Choice: <span id="userChoice"></span></h2>
+    <h2>Result: <span id="result"></span></h2>
+
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissors">scissors</button>
+
+</body>
+
+</html>
