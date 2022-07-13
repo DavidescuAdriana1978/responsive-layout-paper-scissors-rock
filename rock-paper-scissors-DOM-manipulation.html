@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors Game - Using DOM Manipulation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section class="container">
+      <h1>Rock Paper Scissors Game</h1>
+      <div id="score-counter">
+        <div id="player-score">
+          <h2>Player Counter</h2>
+          <p id="player-count">0</p>
+        </div>
+        <div id="computer-score">
+          <h2>Computer Counter</h2>
+          <p id="computer-count">0</p>
+        </div>
+      </div>
+      <div id="play-game">
+        <div id="computer-choice">Computer Choice</div>
+        <div id="user-choice">User Choice</div>
+        <div id="game-items">
+          <button id="rock">
+            <img src="img/rock.jpg" alt="" height="50px" />
+          </button>
+          <button id="paper">
+            <img src="img/paper.webp" alt="" height="50px" />
+          </button>
+          <button id="scissors">
+            <img src="img/scissors.jpg" alt="" height="50px" />
+          </button>
+        </div>
+        <div class="result">Result</div>
+      </div>
+    </section>
+    <script>
+      var game = () => {
+        var playerScore = 0;
+        var computerScore = 0;
+        var displayPlayerScore = document.getElementById("player-count");
+        var displayComputerScore = document.getElementById("computer-count");
+
+        var displayComputerChoice = document.getElementById("computer-choice");
+        var displayUserChoice = document.getElementById("user-choice");
+        var displayResult = document.querySelector(".result");
+        var displayOptions = document.querySelectorAll("button");
+        var userChoice;
+        var computer;
+        var user;
+
+        displayOptions.forEach((displayOptions) =>
+          displayOptions.addEventListener("click", (e) => {
+            userChoice = e.target.id;
+            displayUserChoice.innerHTML = userChoice;
+            generateOptions(computer, user);
+            playGame();
+          })
+        );
+
+        function generateOptions() {
+          var options = ["rock", "paper", "scissors"];
+          var randomNumberComputer = Math.floor(Math.random() * options.length);
+          var randomNumberUser = Math.floor(Math.random() * options.length);
+          computer = options[randomNumberComputer];
+          user = options[randomNumberUser];
+          displayComputerChoice.innerText = "Computer choice: " + computer;
+          displayUserChoice.innerText = "User choice: " + user;
+        }
+
+        function playGame() {
+          var hasComputerWon =
+            (computer === "paper" && user === "rock") ||
+            (computer === "scissors" && user === "paper") ||
+            (computer === "rock" && user === "scissors");
+
+          var isATie = computer === user;
+
+          if (hasComputerWon) {
+            computerScore++;
+            displayComputerScoreinnerHTML = computerScore;
+            displayResult.textContent = "Result: " + "computer wins";
+          } else if (isATie) {
+            displayResult.textContent = "Result: " + "everbody wins";
+            computerScore++;
+            playerScore++;
+            displayComputerScore.innerHTML = computerScore;
+            displayPlayerScore.innerHTML = playerScore;
+          } else {
+            displayResult.textContent = "Result: " + "player wins";
+            playerScore++;
+            displayPlayerScore.innerHTML = playerScore;
+          }
+        }
+      };
+
+      game();
+    </script>
+  </body>
+</html>
